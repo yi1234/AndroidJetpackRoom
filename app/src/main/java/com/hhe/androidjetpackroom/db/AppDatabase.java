@@ -45,12 +45,12 @@ public abstract class AppDatabase extends RoomDatabase {
                     @Override
                     public void onCreate(@NonNull SupportSQLiteDatabase db) {
                         super.onCreate(db);
-                        executors.diskIO().execute(() -> {
-                            // Generate the data for pre-population
-                            AppDatabase database = AppDatabase.getInstance(appContext, executors);
-                            // notify that the database was created and it's ready to be used
-                            database.setDatabaseCreated();
-                        });
+//                        executors.diskIO().execute(() -> {
+//                            // Generate the data for pre-population
+//                            AppDatabase database = AppDatabase.getInstance(appContext, executors);
+//                            // notify that the database was created and it's ready to be used
+//                            database.setDatabaseCreated();
+//                        });
                     }
                 })
                 .addMigrations(MIGRATION_1_2)
@@ -83,7 +83,6 @@ public abstract class AppDatabase extends RoomDatabase {
                     "SELECT uid, first_name, last_name FROM user");
             database.execSQL("DROP TABLE user");
             database.execSQL("ALTER TABLE temp_user RENAME TO user");
-
         }
     };
 

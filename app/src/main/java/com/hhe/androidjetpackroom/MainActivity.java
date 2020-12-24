@@ -31,7 +31,6 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Random random;
     private UserModel userModel;
 
     @Override
@@ -39,17 +38,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         userModel = new ViewModelProvider(this,  ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(UserModel.class);
-
-        random = new Random();
     }
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     public void insertAll(View view) {
-//        for (int i = 0; i < 10; i++) {
-//            User user = new User();
-//            user.firstName =String.valueOf(钟);
-//            user.lastName =String.valueOf(钟);
-//            db.userDao().insertAll(user);
-//        }
         Disposable disposable = Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Exception {
